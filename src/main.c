@@ -7,7 +7,6 @@
 
 
 int main() {
-FILE *fp;
 
 PlayerStat player = {0};        //player struct 
 player.Entity_ID = 1;               //player is ID 1
@@ -86,11 +85,5 @@ printf("Ent ID: %i\n", player.Entity_ID);
   printf("------------------------------------------------------\n");
   scanf("%i", &Input);
   }
-  
-  if (Input == 4) {
-   fp = fopen("save.text", "w");
-  fprintf(fp, "\nPlayerHP: 100");
-  fclose(fp);
-}
   return 0;
 }
