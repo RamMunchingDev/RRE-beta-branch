@@ -35,7 +35,8 @@ typedef struct Player {                     //glorrified rectangle btw
 //player basic stats 
 //-----------------------------------------------------------------------------------
 typedef struct PlayerStat {
-    int Entity_ID;            //ID number 
+    int Entity_ID;            //ID number
+    bool Rendered;          //is player rendered  
     float Health;             //Player Health stat
     int Attack;             //Player Attack stat 
     int Defense;            //Player defense stat
@@ -140,25 +141,48 @@ typedef struct EnemyStat {
     float XpDropped;        //Xp dropped on death 
 } EnemyStat;
 
-//will put under a struct 
-typedef bool CanBurn;           //Can the enemy burn player or objects
-typedef bool CanBleed;          //can the enemy inflict bleeding 
-typedef bool CanWet;            //Can the enemy make things wet...
-typedef bool IsRendered;        //is enemy rendered 
-typedef bool IsHit;             //is enemy hit
-    
+//will add more
+typedef struct EnemyInfliction {
+bool CanBurn;           //Can the enemy burn player or objects
+bool CanBleed;          //can the enemy inflict bleeding 
+bool CanWet;            //Can the enemy make things wet...
+bool IsRendered;        //is enemy rendered 
+bool IsHit;             //is enemy hit
+} EnemyInfliction; 
+//------------------------------------------------------------------------------------------------------
+//Weather
+//------------------------------------------------------------------------------------------------------
+typedef enum Weather {      //Weather and wtv you call it idk 
+    Raining,
+    Thundering,
+    Snowing,
+    Hailing,
+    Sunny,
+    Cloudly,
+    Clear,
+} Weather;
+
+typedef enum Seasons {                  //all four seasions 
+    Spring,
+    Summar,
+    Fall,
+    Winter,
+} Seasons;
+
 //------------------------------------------------------------------------------------------------------
 //Define states 
 //------------------------------------------------------------------------------------------------------
-typedef bool IsLiquid;              //is object a liquid 
-typedef bool IsSolid;               //is object a solid 
-typedef bool IsAir;                 //is object air/can phase through
-typedef bool IsHot;                 //is object able inflict burn damage 
-typedef bool IsCold;                //is Object cold
-typedef bool IsWet;                 //is object wet 
-typedef bool IsDry;                 //is object dry, for whatever purpose
-typedef bool IsSharp;               //is object able to inflict bleed 
-typedef bool IsMoving;              //is object moving 
+typedef struct ObjectState {
+bool IsLiquid;              //is object a liquid 
+bool IsSolid;               //is object a solid 
+bool IsAir;                 //is object air/can phase through
+bool IsHot;                 //is object able inflict burn damage 
+bool IsCold;                //is Object cold
+bool IsWet;                 //is object wet 
+bool IsDry;                 //is object dry, for whatever purpose
+bool IsSharp;               //is object able to inflict bleed 
+bool IsMoving;              //is object moving 
+} ObjectState;
 //---------------------------------------------------------------------------------
 //Npc interactions 
 //---------------------------------------------------------------------------------
@@ -166,20 +190,22 @@ typedef bool IsMoving;              //is object moving
 //add shop here, old shop lowkey ass
 
 //--------------------------------------------------------------------------------
-//object interactions (put in a struct) this part is a WIP
+//object interactions --this part is a WIP
 //--------------------------------------------------------------------------------
-typedef bool IsObjectHit;       //is object hit 
-typedef bool IsObjectDestroyed; //is object destroyed 
-typedef int ObjectHealth;       //Object health, breaks on 0 
-typedef bool IsZonechange;      //is object changing zone when hit/interacted 
-typedef bool CanMove;           //can you move the object
-typedef bool CanInteractWithObjects; //can the object interact with other objects 
-typedef bool IsRendered;              //is object rendered 
+typedef struct ObjectAttributes {
+bool IsObjectDestroyed; //is object destroyed 
+bool IsZonechange;      //is object changing zone when hit/interacted 
+bool CanMove;           //can you move the object
+bool CanInteractWithObjects; //can the object interact with other objects 
+bool CanCrush;                //can it crush player 
+} ObjectAttributes;
 
 typedef struct ObjectStat {
-    float FallDamage;             //basically, how hard will it be if you fall on it 
-    float Bounce;                 //how bouncy / boing boing :3 
-    bool CanCrush;                //can it crush player 
+int Entity_ID;                              //object entity ID
+int ObjectHealth;       //Object health, breaks on 0 
+float FallDamage;             //basically, how hard will it be if you fall on it 
+bool IsObjectHit;       //is object hit 
+bool IsRendered;              //is object rendered 
 } ObjectStat;
 
 //------------------------------------------------------------------------------------------------------

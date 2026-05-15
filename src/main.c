@@ -52,6 +52,7 @@ FILE *fptr;
   printf("Level: %i\n", progress.Level);
   printf("Moral: %f\n", progress.Moral);
   printf("XP: %f\n", progress.XP);
+  printf("4) to save data");
   printf("------------------------------------------------------\n");
   scanf("%i", &Input);
 
@@ -80,6 +81,17 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
     TermClear();
    ListDir();
     return 0;
+  }
+
+  if (Input == 4) {
+    status.IsBleeding = true;
+    status.IsBurning = true; 
+    status.IsCrawling = true;
+    status.IsCrouching = false;
+    status.IsDry = false;
+    status.Isinteracting = true;
+    status.IsStanding = false;
+    status.IsWet = true;
   }
 
   if (Input == 404){
