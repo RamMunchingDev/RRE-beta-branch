@@ -21,6 +21,16 @@ progress.Level = 0;
 progress.Moral = 100.00;
 progress.XP = 0.00;
 
+PlayerStatus status = {0};
+status.IsBleeding = false;
+status.IsBurning = false;
+status.IsCrawling = false;
+status.IsCrouching = false;
+status.IsDry = true;
+status.Isinteracting = false;
+status.IsStanding = true;
+status.IsWet = false;
+
 EnemyStat enemy = {0};
 enemy.Attack = 1.3;
 enemy.Health = 15.00;
