@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
+#include <time.h>
 #include "RRE.h"
 
 //warning this may not work, just have Raylib even tho you are using the terminal 
@@ -91,9 +92,10 @@ printf("Ent ID: %i\n", player.Entity_ID);
 
   if (Input == 4) {
     TermClear();
-    fptr = fopen("save.txt", "w");
+    fptr = fopen("../data/save.txt", "w");
     rewind(fptr);
-    fprintf(fptr, "HP: %f", player.Health);                         //saves health 
+    fprintf(fptr, "ID: %i", player.Entity_ID);
+    fprintf(fptr, "\nHP: %f", player.Health);                         //saves health 
     fprintf(fptr, "\nATK: %i", player.Attack);                  //saves attack 
     fprintf(fptr, "\nDEF: %i", player.Defense);             //saves defense 
     fprintf(fptr, "\nMoney: %f", player.Money);         //saves money
