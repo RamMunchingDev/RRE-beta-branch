@@ -28,6 +28,7 @@ enemy.XpDropped = 12;
 
 //------------------------------------------------------------------------------------------------------
 int Input;
+FILE *fptr;
 
 
 //remove this when developing your game 
@@ -55,6 +56,7 @@ printf("$: %f\n", player.Money);
   }
 
   if (Input == 2) {
+    TermClear();
 progress.Level += 1;
 progress.XP = 103.99;
 printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
@@ -74,6 +76,7 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
     Quit();
   }
   if (Input == 0) {
+    TermClear();
 printf("Ent ID: %i\n", player.Entity_ID);
   printf("Player Health: %f\n",  player.Health);
   printf("Attack Stat: %i\n", player.Attack);
@@ -84,6 +87,26 @@ printf("Ent ID: %i\n", player.Entity_ID);
   printf("XP: %f\n", progress.XP);
   printf("------------------------------------------------------\n");
   scanf("%i", &Input);
+  }
+
+  if (Input == 4) {
+    TermClear();
+    fptr = fopen("save.txt", "w");
+    rewind(fptr);
+    fprintf(fptr, "HP: %f", player.Health);                         //saves health 
+    fprintf(fptr, "\nATK: %i", player.Attack);                  //saves attack 
+    fprintf(fptr, "\nDEF: %i", player.Defense);             //saves defense 
+    fprintf(fptr, "\nMoney: %f", player.Money);         //saves money
+    fprintf(fptr, "\nLvl: %i", progress.Level);               //saves level 
+    fprintf(fptr, "\nMoral: %f", progress.Moral);       //saves moral
+    fprintf(fptr, "\nXP: %f", progress.XP);                   //saves xp
+    if (fptr == NULL) {
+      printf("fail");
+      return 0;
+    }
+    fclose(fptr);
+    printf("-------------------------------------------\n");
+    printf("Player Data Saved!\n");
   }
   return 0;
 }
