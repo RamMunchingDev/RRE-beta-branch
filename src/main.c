@@ -12,6 +12,7 @@ int main() {
 PlayerStat player = {0};        //player struct 
 player.Entity_ID = 1;               //player is ID 1
 player.Health = 100.00;         //player health 
+player.Rendered = true;         //is player rendered
 player.Attack = 10;                 //player attack stat 
 player.Defense = 12;              //how much the player can block 
 player.Money = 0.00;              //dolla dolla $$$$$$$
@@ -22,14 +23,21 @@ progress.Moral = 100.00;
 progress.XP = 0.00;
 
 PlayerStatus status = {0};
-status.IsBleeding = false;
-status.IsBurning = false;
-status.IsCrawling = false;
+status.IsBleeding = false;            //is bleeding 
+status.IsBurning = false;             //is burning  
+status.IsCrawling = false;              //is crawling 
 status.IsCrouching = false;
 status.IsDry = true;
 status.Isinteracting = false;
 status.IsStanding = true;
 status.IsWet = false;
+
+PlayerData movement  = {0};
+  movement.Speed = 12;
+  movement.SprintSpeed = 13;
+  movement.CrawlSpeed = 9;
+  movement.JumpHeight = 5;
+  movement.CrouchSpeed = 10;
 
 EnemyStat enemy = {0};
 enemy.Attack = 1.3;
@@ -52,7 +60,10 @@ FILE *fptr;
   printf("Level: %i\n", progress.Level);
   printf("Moral: %f\n", progress.Moral);
   printf("XP: %f\n", progress.XP);
-  printf("4) to save data");
+  printf("1) to take damage\n");
+  printf("2) to level up\n");
+  printf("3) to list directory\n");
+  printf("4) to save data\n");
   printf("------------------------------------------------------\n");
   scanf("%i", &Input);
 
@@ -83,7 +94,7 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
     return 0;
   }
 
-  if (Input == 4) {
+  if (Input == 5) {
     status.IsBleeding = true;
     status.IsBurning = true; 
     status.IsCrawling = true;
@@ -92,6 +103,8 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
     status.Isinteracting = true;
     status.IsStanding = false;
     status.IsWet = true;
+    Input - 5;
+    scanf("%i", &Input);
   }
 
   if (Input == 404){
@@ -100,7 +113,7 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
   if (Input == 0) {
     TermClear();
-printf("Ent ID: %i\n", player.Entity_ID);
+  printf("Ent ID: %i\n", player.Entity_ID);
   printf("Player Health: %f\n",  player.Health);
   printf("Attack Stat: %i\n", player.Attack);
   printf("Defense Stat: %i\n", player.Defense);
@@ -114,16 +127,20 @@ printf("Ent ID: %i\n", player.Entity_ID);
 
   if (Input == 4) {
     TermClear();
-    fptr = fopen("../data/save.txt", "w");
+    fptr = fopen("data/save.txt", "w");
     rewind(fptr);
-    fprintf(fptr, "ID: %i", player.Entity_ID);
+    fprintf(fptr, "Player Data");
+    fprintf(fptr, "\nID: %i", player.Entity_ID);
     fprintf(fptr, "\nHP: %f", player.Health);                         //saves health 
     fprintf(fptr, "\nATK: %i", player.Attack);                  //saves attack 
-    fprintf(fptr, "\nDEF: %i", player.Defense);             //saves defense 
+    fprintf(fptr, "\nDEF: %i", player.Defense);             //saves defense
+    fprintf(fptr, "\nSpeed: %f", movement.Speed); 
     fprintf(fptr, "\nMoney: %f", player.Money);         //saves money
     fprintf(fptr, "\nLvl: %i", progress.Level);               //saves level 
     fprintf(fptr, "\nMoral: %f", progress.Moral);       //saves moral
     fprintf(fptr, "\nXP: %f", progress.XP);                   //saves xp
+    fprintf(fptr, "\nbleed: %d", status.IsBleeding);          //is player bleeding saved 
+    fprintf(fptr, "\nBurning: %d", status.IsBurning);         //is player burning saved 
     if (fptr == NULL) {
       printf("fail");
       return 0;
@@ -131,6 +148,13 @@ printf("Ent ID: %i\n", player.Entity_ID);
     fclose(fptr);
     printf("-------------------------------------------\n");
     printf("Player Data Saved!\n");
+  }
+
+  if (Input == 6) {
+    int A = 1;
+    while(A == 1) {
+      printf("test\n");
+    }
   }
   return 0;
 }
