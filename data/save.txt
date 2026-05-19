@@ -1,12 +1,12 @@
 Player Data
 ID: 1
-HP: 100.000000
+HP: 90.000000
 ATK: 10
 DEF: 12
 Speed: 12.000000
-Money: 0.000000
-Lvl: 0
+Money: 25.250000
+Lvl: 1
 Moral: 100.000000
-XP: 0.000000
+XP: 103.989998
 bleed: 0
 Burning: 0

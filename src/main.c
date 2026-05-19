@@ -182,5 +182,8 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
       printf("sec: %i  min: %i hour: %i\n", date.Second, date.Minute, date.Hour);
     }
   }
+  if (Input == 8) {
+    printf("Temp");
+  }
   return 0;
 }

@@ -16,7 +16,7 @@
 #include <stdbool.h>       //removed Raymath of now and replaced it with bool so people do not need to include themselves 
 #include <stdlib.h>
 #include <math.h> 
-#include "RREC.h"
+#include "RREC.h"       //function defintion 
 
 #ifndef RAMENG_H
 #define RAMENG_H
@@ -26,17 +26,16 @@
 they are a bit messy rn and they are defined in the headers relating them RREC = Rams Raylib Engine Core */
 //----------------------------------------------------------------------------------
 
-//----------------------------------------------------------------------------------
-//core
-//-----------------------------------------------------------------------------------
+//==================================================
+//CORE
+//==================================================
 typedef struct TPS {
 int Ticks;                  //how much the game updates 
 int TickRate;     //how much the ticks update a second 
 int MaxTicks;       //how much ticks can happen before set back to 0
 } TPS;
-
-//function to use TickSpeed -- Inrceases ticks persecond -- make tps 
-int TickSpeed(int Ticks, int TickRate, int MaxTicks);
+ 
+int TickSpeed(int Ticks, int TickRate, int MaxTicks); //ticks increase per second, resets at MaxTick
 
 //------------------------------------------------------------------------------------------------------
 //player info-stats-limbs-data-Inv
