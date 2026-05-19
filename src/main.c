@@ -138,6 +138,11 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   scanf("%i", &Input);
   }
 
+  if (Input == 8) {
+    DataSave("data/test.txt", "sample \ntest2");
+  }
+
+
   if (Input == 4) {
     TermClear();
     fptr = fopen("data/save.txt", "w");
@@ -181,9 +186,6 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
       date.Hour = HourTick(date.Minute, date.Hour);
       printf("sec: %i  min: %i hour: %i\n", date.Second, date.Minute, date.Hour);
     }
-  }
-  if (Input == 8) {
-    printf("Temp");
   }
   return 0;
 }

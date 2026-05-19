@@ -248,18 +248,12 @@ bool IsRendered;              //is object rendered
 //add things here
 
 //------------------------------------------------------------------------------------------------------
-// Terminal
+// Terminal/Files
 //------------------------------------------------------------------------------------------------------
-void TermClear() {                              //(linux only) clears the terminal example > TermClear();
-    system("clear");
-}
-void Quit() {                                           //quits engine/game/software
-    exit;
-}
-void ListDir() {                                    //(linux only) Lists current Dir
-    char List[8];
-    strcpy(List, "ls -la");
-    system(List);
-}
+//fptr means file name/path
+void TermClear();                               //clear terminal 
+void Quit();                                    //quit terminal 
+void ListDir();                                 //list directories 
+void DataSave(const char *fptr, char Write[]);  //save data
 
 #endif //RAMENG

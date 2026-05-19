@@ -48,4 +48,30 @@ int HourTick(int Minute, int Hour) {
     return Hour;
 }
 
+//===================================================================================
+//TERMINAL
+//===================================================================================
+void TermClear() {                              //(clears the terminal example > TermClear();
+    system("clear");
+}
+void Quit() {                                           //quits engine/game/software
+    exit;
+}
+void ListDir() {                                    // Lists current Dir
+    char List[3];
+    strcpy(List, "ls");
+    system(List);
+}
+
+void DataSave(const char *fptr, char Write[]){
+    TermClear();
+    fptr = fopen("data/test.txt", "w");
+    rewind(fptr);
+    fprintf(fptr, "----Data----");
+    fprintf(fptr, "\n%s", Write);
+    fclose(fptr);
+    printf("-------------------------------------------\n");
+    printf("Data Saved!\n");
+}
+
 #endif
