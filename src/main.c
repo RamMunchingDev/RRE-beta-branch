@@ -9,6 +9,7 @@
 
 int main() {
 
+  
 PlayerStat player = {0};        //player struct 
 player.Entity_ID = 1;               //player is ID 1
 player.Health = 100.00;         //player health 
@@ -139,7 +140,7 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
 
   if (Input == 8) {
-    DataSave("data/test.txt", "sample \ntest2");
+    DataSave("data/test.txt", "testing \ntest2");
   }
 
 

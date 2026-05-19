@@ -1,3 +1,0 @@
-----Data----
-sample 
-test2
