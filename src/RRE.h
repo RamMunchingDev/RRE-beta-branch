@@ -8,17 +8,35 @@
 
 //that's all.  
 
-//May 14th 2026, as of this file update
-//fixed grammar and added a few notes 
+//May 18th 2026, as of this file update
+//added core--math and a bit of more will split into multiple H files for cleaner look eventually 
 
 
 
 #include <stdbool.h>       //removed Raymath of now and replaced it with bool so people do not need to include themselves 
 #include <stdlib.h>
 #include <math.h> 
+#include "RREC.h"
 
 #ifndef RAMENG_H
 #define RAMENG_H
+
+//----------------------------------------------------------------------------------
+/* at the end of each section there will be their functions 
+they are a bit messy rn and they are defined in the headers relating them RREC = Rams Raylib Engine Core */
+//----------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------
+//core
+//-----------------------------------------------------------------------------------
+typedef struct TPS {
+int Ticks;                  //how much the game updates 
+int TickRate;     //how much the ticks update a second 
+int MaxTicks;       //how much ticks can happen before set back to 0
+} TPS;
+
+//function to use TickSpeed -- Inrceases ticks persecond -- make tps 
+int TickSpeed(int Ticks, int TickRate, int MaxTicks);
 
 //------------------------------------------------------------------------------------------------------
 //player info-stats-limbs-data-Inv
@@ -150,8 +168,23 @@ bool IsRendered;        //is enemy rendered
 bool IsHit;             //is enemy hit
 } EnemyInfliction; 
 //------------------------------------------------------------------------------------------------------
-//Weather
+//Weather and time 
 //------------------------------------------------------------------------------------------------------
+
+//time 
+typedef struct Date {                //Day, time, hours and minutes 
+int Day;
+int Hour;
+int Minute;
+int Second;
+int Time;
+} Date;
+
+int SecondsTick(int Second);
+int MinuteTick(int Second, int Minute);
+int HourTick(int Minute, int Hour);
+
+//weather 
 typedef enum Weather {      //Weather and wtv you call it idk 
     Raining,
     Thundering,
@@ -159,6 +192,7 @@ typedef enum Weather {      //Weather and wtv you call it idk
     Hailing,
     Sunny,
     Cloudly,
+    Foggy,
     Clear,
 } Weather;
 

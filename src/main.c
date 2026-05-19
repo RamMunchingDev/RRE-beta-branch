@@ -46,9 +46,22 @@ enemy.Defense = 0;
 enemy.XpDropped = 12;
 
 //------------------------------------------------------------------------------------------------------
+bool tUpdate= true;
 int Input;
 FILE *fptr;
 
+TPS tps = {0};
+tps.MaxTicks = 60;
+tps.TickRate = 1;
+tps.Ticks = 0;
+
+Date date = {0};
+date.Day = 0;
+date.Hour = 0;
+date.Minute = 0;
+date.Second = 0;
+date.Time = 0;
+//------------------------------------------------------------------------------------------
 
 //remove this when developing your game 
   printf("ALL WORKS!\n");                                             //prints the def to make sure all data is imput correctly 
@@ -153,7 +166,20 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   if (Input == 6) {
     int A = 1;
     while(A == 1) {
-      printf("test\n");
+      tps.Ticks = TickSpeed(tps.Ticks, tps.TickRate, tps.MaxTicks);
+      printf("%i\n", tps.Ticks);
+    }
+  }
+
+  //counts up in seconds 
+  if (Input == 7) {
+    int B = 1;
+    TermClear();
+    while(B == 1) {
+      date.Second = SecondsTick(date.Second);
+      date.Minute = MinuteTick(date.Second, date.Minute);
+      date.Hour = HourTick(date.Minute, date.Hour);
+      printf("sec: %i  min: %i hour: %i\n", date.Second, date.Minute, date.Hour);
     }
   }
   return 0;
