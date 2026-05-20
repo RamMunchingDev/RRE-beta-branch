@@ -255,5 +255,6 @@ void TermClear();                               //clear terminal
 void Quit();                                    //quit terminal 
 void ListDir();                                 //list directories 
 void DataSave(const char *fptr, char Write[]);  //save data
+void DataSavePath(char Path[], char Write[]);
 
 #endif //RAMENG
