@@ -74,4 +74,16 @@ void DataSave(const char *fptr, char Write[]){
     printf("Data Saved!\n");
 }
 
+void DataSavePath(char Path[], char Write[]) {
+    TermClear();
+    FILE *fptr;
+    fptr = fopen(Path, "w");
+    rewind(fptr);
+    fputs(Write, fptr);
+    fclose(fptr);
+    printf("-------------------------------------------\n");
+    printf("Data Path Saved!\n");
+}
+
+
 #endif
