@@ -9,7 +9,7 @@
 
 int main() {
 
-  
+
 PlayerStat player = {0};        //player struct 
 player.Entity_ID = 1;               //player is ID 1
 player.Health = 100.00;         //player health 
@@ -78,6 +78,11 @@ date.Time = 0;
   printf("2) to level up\n");
   printf("3) to list directory\n");
   printf("4) to save data\n");
+  printf("5) to set status to true\n");
+  printf("6) to tick\n");
+  printf("7) to count up in seconds\n");
+  printf("8) to save data to a file\n");
+  printf("9) to write to a file\n");
   printf("------------------------------------------------------\n");
   scanf("%i", &Input);
 
@@ -140,9 +145,26 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
 
   if (Input == 8) {
-    DataSave("data/test.txt", "testing \ntest2");
+    DataSave("test.txt", "testing \ntest2");
+  }
+  if (Input == 9) {
+    char Path[100];
+    char SaveText[100+1];
+    PathToFile(Path);
+    FILE *Fw = fopen(Path, "w");
+    WriteToFile(SaveText);
+    DataWrite(Path, SaveText);
   }
 
+  if (Input == 10) {
+    char FileName[300];
+    FileCreate(FileName);
+  }
+
+  if (Input == 11) {
+    char file[100];
+    ReadTextFile(file);
+  }
 
   if (Input == 4) {
     TermClear();
