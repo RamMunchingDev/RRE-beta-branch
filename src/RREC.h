@@ -1,5 +1,5 @@
 /*this is where all functions in the core of the engine will be defined
-today is May 19th 2026*/
+today is May 20th 2026 -- quick hot fix*/
 
 #ifndef RAMCORE_H
 #define RAMCORE_H
@@ -63,9 +63,19 @@ void ListDir() {                                    // Lists current Dir
     system(List);
 }
 
-void DataSave(const char *fptr, char Write[]){
+void ReadTextFile(char Read[]) {
+  PathToFile(Read);
+  FILE *fptr = fopen(Read, "r");
+  fgets(Read, 100, fptr);    
+  printf("%s\n", Read);  
+  fclose(fptr);
+  
+}
+
+void DataSave(const char *file, char Write[]){      //Save set data, for errors or other logs 
     TermClear();
-    fptr = fopen("data/test.txt", "w");
+    FILE *fptr;
+    fptr = fopen(file, "a");
     rewind(fptr);
     fprintf(fptr, "----Data----");
     fprintf(fptr, "\n%s", Write);
@@ -74,16 +84,43 @@ void DataSave(const char *fptr, char Write[]){
     printf("Data Saved!\n");
 }
 
-void DataSavePath(char Path[], char Write[]) {
+void DataWrite(char Path[], char Write[]) {
     TermClear();
     FILE *fptr;
-    fptr = fopen(Path, "w");
+    fptr = fopen(Path, "a");
     rewind(fptr);
-    fputs(Write, fptr);
+    fprintf(fptr, " %s", Write);
     fclose(fptr);
     printf("-------------------------------------------\n");
-    printf("Data Path Saved!\n");
+    printf("Text Saved!\n");
+    if (Path == NULL) {
+        printf("Error: %s\n", strerror(errno));
+    }
+}
+char PathToFile(char Path[]) {
+    printf("Enter Path: ");
+    scanf("%s", Path);
+    return *Path;
 }
 
+char WriteToFile(char SaveText[]) {
+    printf("Enter text to save:");
+    scanf(" %99[^\n]", SaveText);
+    return *SaveText;
+    }
 
+void FileCreate(char FileName[]) {
+    TermClear();
+    FILE *fptr;
+    printf("Enter name for the file you wish to create \n");
+    printf("name: ");
+    scanf("%s", FileName);
+    fptr = fopen(FileName, "w");
+    if (fptr == NULL) {
+      printf("Error: %s\n", strerror(errno));
+    }
+    fclose(fptr);
+    printf("File Made!\n");
+    
+}
 #endif

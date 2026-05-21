@@ -8,13 +8,16 @@
 
 //that's all.  
 
-//May 18th 2026, as of this file update
+//May 20th 2026, as of this file update
 //added core--math and a bit of more will split into multiple H files for cleaner look eventually 
 
+
+//hot fixed the file issue 
 
 
 #include <stdbool.h>       //removed Raymath of now and replaced it with bool so people do not need to include themselves 
 #include <stdlib.h>
+#include <string.h>
 #include <math.h> 
 #include "RREC.h"       //function defintion 
 
@@ -34,7 +37,7 @@ int Ticks;                  //how much the game updates
 int TickRate;     //how much the ticks update a second 
 int MaxTicks;       //how much ticks can happen before set back to 0
 } TPS;
- 
+
 int TickSpeed(int Ticks, int TickRate, int MaxTicks); //ticks increase per second, resets at MaxTick
 
 //------------------------------------------------------------------------------------------------------
@@ -76,7 +79,7 @@ typedef struct PlayerData {
     float CrouchSpeed;             //Speed while crouching 
     float JumpHeight;            //Player jump height 
     } PlayerData;
-    
+
 //------------------------------------------------------------------------------------------------------
 // Player status effects 
 //------------------------------------------------------------------------------------------------------
@@ -101,7 +104,7 @@ typedef struct BagSlots {            //WILL REVISE
     int ID_ITEM;                    //Which item is in the slot (will revise)
     bool Holding;                   //are you holding the item
 } BagSlots;
-    
+
     //---------------------------------------------------------------------
     //ITEM ID IS WIP 
     //---------------------------------------------------------------------
@@ -110,7 +113,7 @@ typedef struct ItemID {
  int ID_SLOT;                       //which number slot this item is in, i.e., ItemSlot 1 = ID_SLOT
 } ItemID;
 typedef int ItemSlot;               //the slot of which an item is under 
-    
+
 //-----------------------------------------------------------------------------------------------------
 //Will be put under a struct "Inflicts"
 //------------------------------------------------------------------------------------------------------
@@ -247,14 +250,26 @@ bool IsRendered;              //is object rendered
 
 //add things here
 
-//------------------------------------------------------------------------------------------------------
-// Terminal/Files
-//------------------------------------------------------------------------------------------------------
+//==================================================
+//TERMINAL
+//==================================================
 //fptr means file name/path
 void TermClear();                               //clear terminal 
 void Quit();                                    //quit terminal 
 void ListDir();                                 //list directories 
-void DataSave(const char *fptr, char Write[]);  //save data
-void DataSavePath(char Path[], char Write[]);
+void DataSave(const char *file, char Write[]);  //save data--us ed in saving certain data to a file IE an error log 
+void DataWrite(char Path[], char Write[]);      //write data to a file, path is wrote during run time same with write
+//THESE ARE FOR DATAWRITE
+char PathToFile(char Path[]);                   //path to file
+char WriteToFile(char SaveText[]);              //text to save to file
+//^^
+void FileCreate(char FileName[]);               //create a file
+void ReadTextFile(char Path[]);                 //read a text file 
+
+
+//==================================================
+//TEMP NAME
+//==================================================
+//will add to this
 
 #endif //RAMENG
