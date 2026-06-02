@@ -5,6 +5,8 @@ today is May 20th 2026 -- quick hot fix*/
 #define RAMCORE_H
 
 #include "RRE.h"
+
+#define pi 3.14159265359
 //-----------------------------------------------------------------------------------
 //Core -> Ticks
 //-----------------------------------------------------------------------------------
@@ -64,10 +66,14 @@ void ListDir() {                                    // Lists current Dir
 }
 
 void ReadTextFile(char Read[]) {
+  TermClear();  
   PathToFile(Read);
   FILE *fptr = fopen(Read, "r");
-  fgets(Read, 100, fptr);    
-  printf("%s\n", Read);  
+  printf("file: %s\n", Read);  
+  while(fgets(Read, 80*200, fptr)){    
+      printf("%99s", Read);
+  }
+    printf("\n");
   fclose(fptr);
   
 }
@@ -89,7 +95,7 @@ void DataWrite(char Path[], char Write[]) {
     FILE *fptr;
     fptr = fopen(Path, "a");
     rewind(fptr);
-    fprintf(fptr, " %s", Write);
+    fprintf(fptr, "%s", Write);
     fclose(fptr);
     printf("-------------------------------------------\n");
     printf("Text Saved!\n");
@@ -121,6 +127,76 @@ void FileCreate(char FileName[]) {
     }
     fclose(fptr);
     printf("File Made!\n");
-    
 }
+
+void FileDelete(char Path[]) {
+    PathToFile(Path);
+    remove(Path);
+}
+
+//===================================================================================
+//MATH
+//===================================================================================
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int sub(int a, int b) {
+    return a - b;
+}
+
+int multiply(int a, int b) {
+    return a*b;
+}
+
+int divide(int a, int b) {
+    return a / b;
+}
+
+float half(float a) {
+    return a / 2;
+}
+
+float squared(float a) {
+    return a*2;
+}
+
+float cubed(float a) {
+    return a * a * a;
+}
+
+float RectBaseArea(float length, float width) {
+    return length * width;
+}
+
+void Calc(char Response[]) {
+    char a;    //add
+    int A;        //var a
+    int B;        //var b
+    int OUT;
+    int v;
+   
+   // v = strcmp(Response, "add");
+    
+    if (strcmp(Response, "add") == 0) {
+        printf("add:");
+        scanf("%i\n", &A);    //scans for var a
+        scanf("%i\n", &B);    //scans for var b
+        OUT = add(A,B);
+        printf("%i\n", OUT);
+    } else {
+        printf("error");
+    }
+}
+
+//===================================================================================
+//others (unsorted for now)
+//===================================================================================
+
+char UserInput(char Response[]) {
+    scanf(" %99[^\n]s", Response);
+    return *Response;
+}
+
 #endif

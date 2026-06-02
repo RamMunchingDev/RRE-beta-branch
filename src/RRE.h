@@ -265,11 +265,17 @@ char WriteToFile(char SaveText[]);              //text to save to file
 //^^
 void FileCreate(char FileName[]);               //create a file
 void ReadTextFile(char Path[]);                 //read a text file 
+void FileDelete(char Path[]);                   //removes a file
 
 
 //==================================================
-//TEMP NAME
+//MATH
 //==================================================
-//will add to this
+
+int add(int a, int b);
+int sub(int a, int b);
+int multiply(int a, int b);
+int divide(int a, int b);
+
 
 #endif //RAMENG
