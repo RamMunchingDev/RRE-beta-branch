@@ -8,7 +8,7 @@
 
 
 int main() {
-
+TermClear();
 
 PlayerStat player = {0};        //player struct 
 player.Entity_ID = 1;               //player is ID 1
@@ -48,6 +48,7 @@ enemy.XpDropped = 12;
 
 //------------------------------------------------------------------------------------------------------
 bool tUpdate= true;
+
 int Input;
 FILE *fptr;
 
@@ -83,6 +84,10 @@ date.Time = 0;
   printf("7) to count up in seconds\n");
   printf("8) to save data to a file\n");
   printf("9) to write to a file\n");
+  printf("10) to create a file\n");
+  printf("11) to read a text file\n");
+  printf("12) to delete a file \n");
+  printf("13) Math \n");
   printf("------------------------------------------------------\n");
   scanf("%i", &Input);
 
@@ -132,38 +137,76 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
   if (Input == 0) {
     TermClear();
-  printf("Ent ID: %i\n", player.Entity_ID);
-  printf("Player Health: %f\n",  player.Health);
-  printf("Attack Stat: %i\n", player.Attack);
-  printf("Defense Stat: %i\n", player.Defense);
-  printf("money: %f\n", player.Money);
-  printf("Level: %i\n", progress.Level);
-  printf("Moral: %f\n", progress.Moral);
-  printf("XP: %f\n", progress.XP);
+    printf("=============================");
+    printf("File Testing");
+    printf("=============================");
+    printf("7) to count up in seconds\n");
+    printf("8) to save data to a file\n");
+    printf("9) to write to a file\n");
+    printf("10) to create a file\n");
+    printf("11) to read a text file\n");
   printf("------------------------------------------------------\n");
   scanf("%i", &Input);
   }
 
   if (Input == 8) {
     DataSave("test.txt", "testing \ntest2");
+    scanf("%i", &Input);
   }
   if (Input == 9) {
     char Path[100];
-    char SaveText[100+1];
+    char SaveText[800*20];
     PathToFile(Path);
     FILE *Fw = fopen(Path, "w");
     WriteToFile(SaveText);
     DataWrite(Path, SaveText);
+    scanf("%i", &Input);
   }
 
   if (Input == 10) {
     char FileName[300];
     FileCreate(FileName);
+    scanf("%i", &Input);
   }
 
   if (Input == 11) {
-    char file[100];
+    char file[800*20];
     ReadTextFile(file);
+    scanf("%i", &Input);
+  }
+
+  if (Input == 12) {
+    char Path[800];
+    FileDelete(Path);
+  }
+
+  if (Input == 13) {
+    TermClear();
+    int a = 2;
+    int b = 4;
+    int c = add(a,b);
+    int d = sub(b,a);
+    int e = multiply(a,b);
+    int f = divide(b,a);
+    float g = half(b);
+    float h = squared(b);
+    float i = cubed(b);
+    printf("%i\n %i\n %i\n %i\n %f\n %f\n %f\n", c, d, e, f, g, h, i);
+  }
+
+  if (Input == 14) {
+    int a;
+    int b;
+    int c;
+    char Response[500];
+    UserInput(Response);
+    printf("%s \n", Response);
+  }
+
+  if (Input == 15) {
+    char Response[500];
+    UserInput(Response);
+    Calc(Response);
   }
 
   if (Input == 4) {
@@ -212,3 +255,5 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
   return 0;
 }
+
+
