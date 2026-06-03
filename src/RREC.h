@@ -171,22 +171,159 @@ float RectBaseArea(float length, float width) {
 }
 
 void Calc(char Response[]) {
+    TermClear();
     char a;    //add
     int A;        //var a
+    float A_float;
     int B;        //var b
+    float B_float;
     int OUT;
+    float OUT_float;
     int v;
-   
-   // v = strcmp(Response, "add");
-    
+
+    //---
+    //bools
+    //---
+    bool VarA_pi = false;        //wip
+    bool VarB_pi = false;        //wip
+    bool Mode = true;            //wip
+    //-----
+
+    //v = strcmp(Response, "add");
+    //if true v = 0
+    while (Mode == true) {
     if (strcmp(Response, "add") == 0) {
-        printf("add:");
-        scanf("%i\n", &A);    //scans for var a
-        scanf("%i\n", &B);    //scans for var b
-        OUT = add(A,B);
-        printf("%i\n", OUT);
-    } else {
-        printf("error");
+        TermClear();
+
+        //adding
+        printf("ENTER NUMBERS\n");             //text asking
+        
+        printf("var A:");            //prints the name of which var they are on 
+        scanf("%i", &A);    //scans for var a
+        printf("var B:");            //prints the name of which var they are on
+        scanf("%i", &B);    //scans for var b
+        OUT = add(A,B);             //adds the 2
+        
+        printf("OUTPUT: %i\n", OUT);        //prints the results 
+
+        printf("math operation: ");
+        UserInput(Response);
+    }
+
+    //subtraction
+    if (strcmp(Response, "sub") == 0) {
+        TermClear();
+        
+        printf("ENTER NUMBERS TO SUBTRACT\n");
+        printf("ORDER IS IMPORTANT!!\n");
+        
+        printf("FIRST var:");
+        scanf("%i", &A);
+        printf("SECOND var:");
+        scanf("%i", &B);
+      
+        OUT = sub(A,B);
+        printf("OUTPUT: %i\n", OUT);
+
+        printf("math operation: ");
+        UserInput(Response);
+    } 
+
+    //multiply
+    if (strcmp(Response, "multiply") == 0) {
+        TermClear();
+        
+        printf("ENTER NUMBERS\n");         
+        printf("var A:");
+        scanf("%i", &A);    //scans for var a
+        printf("var B:");
+        scanf("%i", &B);    //scans for var b
+        
+        OUT = multiply(A,B);
+        printf("OUTPUT: %i\n", OUT);
+
+        printf("math operation: ");
+        UserInput(Response);
+    }
+
+    //divide
+    if (strcmp(Response, "divide") == 0) {
+        TermClear();
+
+        printf("ENTER NUMBERS\n");         
+        printf("var A:");
+        scanf("%i", &A);    //scans for var a
+        printf("var B:");
+        scanf("%i", &B);    //scans for var b
+
+        OUT = divide(A,B);
+        printf("OUTPUT: %i\n", OUT);
+
+        printf("math operation: ");
+        UserInput(Response);
+    }
+
+    //half
+    if (strcmp(Response, "half") == 0) {
+        TermClear();
+
+        printf("ENTER NUMBERS\n");         
+        printf("var A:");
+        scanf("%f", &A_float);    //scans for var a
+
+        OUT_float = half(A_float);
+        printf("OUTPUT: %f\n", OUT_float);
+
+        printf("math operation: ");
+        UserInput(Response);
+    }
+
+    //squared
+    if (strcmp(Response, "squared") == 0) {
+        TermClear();
+
+        printf("ENTER NUMBERS\n");         
+        printf("var A:");
+        scanf("%f", &A_float);    //scans for var a
+
+        OUT_float = squared(A_float);
+        printf("OUTPUT: %f\n", OUT_float);
+
+        printf("math operation: ");
+        UserInput(Response);
+    }
+
+    //cubed
+    if (strcmp(Response, "cubed") == 0) {
+        TermClear();
+
+        printf("ENTER NUMBERS\n");         
+        printf("var A:");
+        scanf("%f", &A_float);    //scans for var a
+
+        OUT_float = cubed(A_float);
+        printf("OUTPUT: %f\n", OUT_float);
+
+        printf("math operation: ");
+        UserInput(Response);
+    }
+
+    //list of options 
+    if (strcmp(Response, "list") == 0) {
+            TermClear();
+            printf("options: \n");
+            printf(" add\n sub\n multiply\n divide\n half\n squared\n cubed\n");
+            
+            printf("math operation: ");
+            UserInput(Response);
+        }
+    }
+
+    //broken
+    if (strcmp(Response, "quit") == 0) {
+        Mode = false;
+        TermClear();
+        printf("exiting...\n");
     }
 }
 
