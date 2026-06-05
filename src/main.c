@@ -201,58 +201,41 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
 
   if (Input == 14) {
-    char Test[30+1];
-    char text[2];
-    int Txt;
-    UserInput(Test);
-    char *ptr;
-    int a;
-    int b;
+    int a; //always 1
+    int b;  //always 2
     int OUT;
     char OUT_text;
-    
-    char Path[100];
-    char SaveText[800*20];
-    
-    FILE *fptr;
-    int pos;
-    long offset;
-    int seek_z;
-    int getting;
-    int alphabet = 0, number = 0, i;
-    
-    if (isdigit(Test[i]) >= 0) {
-      printf("yes\n");
-      fptr = fopen("test.txt", "r");
-      fputs(Test, fptr);
-      pos = ftell(fptr);
-    
-      seek_z = fseek(fptr, 1, SEEK_END);
-      if (seek_z == 0) {
-        printf("works\n");
-       
-        OUT = getc(fptr);
-        if (OUT <= 0) {
-          printf("Value of errno: %d\n", errno); 
-          perror("Message from perror");
-        } else {
-        printf("%d\n", OUT);
-        }
-        }
-      fclose(fptr);
-    }
+    char Response[30+1];
 
+    char *ptr;
+    UserInput(Response);
+
+   char Check_1[2] = "1";
     
-   /*  ptr = strchr(Test, '(');
+    ptr = strchr(Response, '+');
     if (ptr == NULL) {
       printf("NULL\n");
+      printf("Value of errno: %d\n", errno); 
+      perror("Message from perror");
     }
     if (ptr != NULL) {
       printf("NOT NULL\n");
-      printf("found at: %d\n", ptr-Test+1);
-  */
+
+      size_t plus_length = ptr - Response;
+      char pBefore[plus_length + 1];
+      strncpy(pBefore, Response, plus_length);
+      
+      pBefore[plus_length] = '\0';
+      
     
+      char* pAfter = ptr + 1;
+      if (strcmp(pBefore, Check_1) == 0) {a = 1;}
+      printf("a: %d\n", a);
+      printf("pBefore: %s\n", pBefore);
+      printf("pAfter: %s\n", pAfter);
     }
+   }
+    
 
 
     
