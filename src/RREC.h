@@ -1,12 +1,21 @@
 /*this is where all functions in the core of the engine will be defined
-today is May 20th 2026 -- quick hot fix*/
+today is june 3rd -- math functs */
 
 #ifndef RAMCORE_H
 #define RAMCORE_H
 
 #include "RRE.h"
+#include "RREP.h"
 
-#define pi 3.14159265359
+#include <stdint.h>
+#include <uchar.h>
+ 
+#define π(x) ((x) * (3.14159265359))
+//math definitions under RREP place here 
+
+
+
+        
 //-----------------------------------------------------------------------------------
 //Core -> Ticks
 //-----------------------------------------------------------------------------------
@@ -136,6 +145,10 @@ void FileDelete(char Path[]) {
 
 //===================================================================================
 //MATH
+//------
+//KEY TERMS
+//------
+//∆ - Change (ie ∆s & ∆t is change in pos and time)
 //===================================================================================
 
 int add(int a, int b) {
@@ -170,170 +183,45 @@ float RectBaseArea(float length, float width) {
     return length * width;
 }
 
-void Calc(char Response[]) {
-    TermClear();
-    char a;    //add
-    int A;        //var a
-    float A_float;
-    int B;        //var b
-    float B_float;
-    int OUT;
-    float OUT_float;
-    int v;
+//go easy on me with the physics im still learning 
 
-    //---
-    //bools
-    //---
-    bool VarA_pi = false;        //wip
-    bool VarB_pi = false;        //wip
-    bool Mode = true;            //wip
-    //-----
+//∆speed & ∆time
+float AVG_velocity(float s, float t) {
+    return s / t;
+}
 
-    //v = strcmp(Response, "add");
-    //if true v = 0
-    while (Mode == true) {
-    if (strcmp(Response, "add") == 0) {
-        TermClear();
-
-        //adding
-        printf("ENTER NUMBERS\n");             //text asking
-        
-        printf("var A:");            //prints the name of which var they are on 
-        scanf("%i", &A);    //scans for var a
-        printf("var B:");            //prints the name of which var they are on
-        scanf("%i", &B);    //scans for var b
-        OUT = add(A,B);             //adds the 2
-        
-        printf("OUTPUT: %i\n", OUT);        //prints the results 
-
-        printf("math operation: ");
-        UserInput(Response);
-    }
-
-    //subtraction
-    if (strcmp(Response, "sub") == 0) {
-        TermClear();
-        
-        printf("ENTER NUMBERS TO SUBTRACT\n");
-        printf("ORDER IS IMPORTANT!!\n");
-        
-        printf("FIRST var:");
-        scanf("%i", &A);
-        printf("SECOND var:");
-        scanf("%i", &B);
-      
-        OUT = sub(A,B);
-        printf("OUTPUT: %i\n", OUT);
-
-        printf("math operation: ");
-        UserInput(Response);
-    } 
-
-    //multiply
-    if (strcmp(Response, "multiply") == 0) {
-        TermClear();
-        
-        printf("ENTER NUMBERS\n");         
-        printf("var A:");
-        scanf("%i", &A);    //scans for var a
-        printf("var B:");
-        scanf("%i", &B);    //scans for var b
-        
-        OUT = multiply(A,B);
-        printf("OUTPUT: %i\n", OUT);
-
-        printf("math operation: ");
-        UserInput(Response);
-    }
-
-    //divide
-    if (strcmp(Response, "divide") == 0) {
-        TermClear();
-
-        printf("ENTER NUMBERS\n");         
-        printf("var A:");
-        scanf("%i", &A);    //scans for var a
-        printf("var B:");
-        scanf("%i", &B);    //scans for var b
-
-        OUT = divide(A,B);
-        printf("OUTPUT: %i\n", OUT);
-
-        printf("math operation: ");
-        UserInput(Response);
-    }
-
-    //half
-    if (strcmp(Response, "half") == 0) {
-        TermClear();
-
-        printf("ENTER NUMBERS\n");         
-        printf("var A:");
-        scanf("%f", &A_float);    //scans for var a
-
-        OUT_float = half(A_float);
-        printf("OUTPUT: %f\n", OUT_float);
-
-        printf("math operation: ");
-        UserInput(Response);
-    }
-
-    //squared
-    if (strcmp(Response, "squared") == 0) {
-        TermClear();
-
-        printf("ENTER NUMBERS\n");         
-        printf("var A:");
-        scanf("%f", &A_float);    //scans for var a
-
-        OUT_float = squared(A_float);
-        printf("OUTPUT: %f\n", OUT_float);
-
-        printf("math operation: ");
-        UserInput(Response);
-    }
-
-    //cubed
-    if (strcmp(Response, "cubed") == 0) {
-        TermClear();
-
-        printf("ENTER NUMBERS\n");         
-        printf("var A:");
-        scanf("%f", &A_float);    //scans for var a
-
-        OUT_float = cubed(A_float);
-        printf("OUTPUT: %f\n", OUT_float);
-
-        printf("math operation: ");
-        UserInput(Response);
-    }
-
-    //list of options 
-    if (strcmp(Response, "list") == 0) {
-            TermClear();
-            printf("options: \n");
-            printf(" add\n sub\n multiply\n divide\n half\n squared\n cubed\n");
-            
-            printf("math operation: ");
-            UserInput(Response);
-        }
-    }
-
-    //broken
-    if (strcmp(Response, "quit") == 0) {
-        Mode = false;
-        TermClear();
-        printf("exiting...\n");
+//∆velocity & ∆time 
+float AVG_acceleration(float v, float t);
+//alt acceleration
+float ALT_acceleration(float speed, float Max_speed) {
+    if (speed < Max_speed) {
+     return speed = speed + 1;
     }
 }
+
+void Calc(char Response[]) {
+    char a_add[26];
+    int a;
+    int b;
+    int OUT;
+
+    if (strcmp(Response, "add_2") == 0) {
+        OUT = c_add_2(a, b);
+        printf("OUT: %i\n", OUT);
+    }
+}
+
 
 //===================================================================================
 //others (unsorted for now)
 //===================================================================================
 
 char UserInput(char Response[]) {
+    printf("input: ");
     scanf(" %99[^\n]s", Response);
     return *Response;
 }
+
+
 
 #endif
