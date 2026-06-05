@@ -4,6 +4,7 @@
 #include <time.h>
 #include "RRE.h"
 
+
 //warning this may not work, just have Raylib even tho you are using the terminal 
 
 
@@ -66,20 +67,9 @@ date.Time = 0;
 //------------------------------------------------------------------------------------------
 
 //remove this when developing your game 
-  printf("ALL WORKS!\n");                                             //prints the def to make sure all data is imput correctly 
-  printf("Ent ID: %i\n", player.Entity_ID);
-  printf("Player Health: %f\n",  player.Health);
-  printf("Attack Stat: %i\n", player.Attack);
-  printf("Defense Stat: %i\n", player.Defense);
-  printf("money: %f\n", player.Money);
-  printf("Level: %i\n", progress.Level);
-  printf("Moral: %f\n", progress.Moral);
-  printf("XP: %f\n", progress.XP);
-  printf("1) to take damage\n");
-  printf("2) to level up\n");
-  printf("3) to list directory\n");
-  printf("4) to save data\n");
-  printf("5) to set status to true\n");
+  printf("=============================\n");
+  printf("File Testing\n");
+  printf("=============================\n");
   printf("6) to tick\n");
   printf("7) to count up in seconds\n");
   printf("8) to save data to a file\n");
@@ -88,6 +78,8 @@ date.Time = 0;
   printf("11) to read a text file\n");
   printf("12) to delete a file \n");
   printf("13) Math \n");
+  printf("14) testing finding char pos \n");
+  printf("15) calc \n");
   printf("------------------------------------------------------\n");
   scanf("%i", &Input);
 
@@ -137,6 +129,20 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
   if (Input == 0) {
     TermClear();
+    printf("ALL WORKS!\n");                                             //prints the def to make sure all data is imput correctly 
+    printf("Ent ID: %i\n", player.Entity_ID);
+    printf("Player Health: %f\n",  player.Health);
+    printf("Attack Stat: %i\n", player.Attack);
+    printf("Defense Stat: %i\n", player.Defense);
+    printf("money: %f\n", player.Money);
+    printf("Level: %i\n", progress.Level);
+    printf("Moral: %f\n", progress.Moral);
+    printf("XP: %f\n", progress.XP);
+    printf("1) to take damage\n");
+    printf("2) to level up\n");
+    printf("3) to list directory\n");
+    printf("4) to save data\n");
+    printf("5) to set status to true\n");
     printf("=============================");
     printf("File Testing");
     printf("=============================");
@@ -195,16 +201,25 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
 
   if (Input == 14) {
-    int a;
-    int b;
-    int c;
-    char Response[500];
-    UserInput(Response);
-    printf("%s \n", Response);
+    char Test[4];
+    UserInput(Test);
+    char *ptr;
+    
+    ptr = strchr(Test, 'c');
+    if (ptr == NULL) {
+      printf("NULL\n");
+    }
+    if (ptr != NULL) {
+      printf("NOT NULL\n");
+      printf("found at: %d\n", ptr-Test+1);
+    }
   }
 
   if (Input == 15) {
     char Response[500];
+    int a;
+    int b;
+    TermClear();
     UserInput(Response);
     Calc(Response);
   }
@@ -255,5 +270,4 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
   return 0;
 }
-
 
