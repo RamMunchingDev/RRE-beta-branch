@@ -201,20 +201,61 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
   }
 
   if (Input == 14) {
-    char Test[4];
+    char Test[30+1];
+    char text[2];
+    int Txt;
     UserInput(Test);
     char *ptr;
+    int a;
+    int b;
+    int OUT;
+    char OUT_text;
     
-    ptr = strchr(Test, 'c');
+    char Path[100];
+    char SaveText[800*20];
+    
+    FILE *fptr;
+    int pos;
+    long offset;
+    int seek_z;
+    int getting;
+    int alphabet = 0, number = 0, i;
+    
+    if (isdigit(Test[i]) >= 0) {
+      printf("yes\n");
+      fptr = fopen("test.txt", "r");
+      fputs(Test, fptr);
+      pos = ftell(fptr);
+    
+      seek_z = fseek(fptr, 1, SEEK_END);
+      if (seek_z == 0) {
+        printf("works\n");
+       
+        OUT = getc(fptr);
+        if (OUT <= 0) {
+          printf("Value of errno: %d\n", errno); 
+          perror("Message from perror");
+        } else {
+        printf("%d\n", OUT);
+        }
+        }
+      fclose(fptr);
+    }
+
+    
+   /*  ptr = strchr(Test, '(');
     if (ptr == NULL) {
       printf("NULL\n");
     }
     if (ptr != NULL) {
       printf("NOT NULL\n");
       printf("found at: %d\n", ptr-Test+1);
+  */
+    
     }
-  }
 
+
+    
   if (Input == 15) {
     char Response[500];
     int a;
