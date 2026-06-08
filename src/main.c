@@ -200,46 +200,82 @@ printf("Level: %i\n XP: %f\n", progress.Level, progress.XP);
     printf("%i\n %i\n %i\n %i\n %f\n %f\n %f\n", c, d, e, f, g, h, i);
   }
 
-  if (Input == 14) {
-    int a; //always 1
-    int b;  //always 2
-    int OUT;
-    char OUT_text;
-    char Response[30+1];
-
-    char *ptr;
-    UserInput(Response);
-
-   char Check_1[2] = "1";
-    
-    ptr = strchr(Response, '+');
-    if (ptr == NULL) {
-      printf("NULL\n");
-      printf("Value of errno: %d\n", errno); 
-      perror("Message from perror");
+  if (Input == 14) {  
+    char Response[30];
+    int out;
+    out = scan_add_2(Response);
+    printf("%i\n", out);
     }
-    if (ptr != NULL) {
-      printf("NOT NULL\n");
 
-      size_t plus_length = ptr - Response;
-      char pBefore[plus_length + 1];
-      strncpy(pBefore, Response, plus_length);
+    if (Input == 15) {
       
-      pBefore[plus_length] = '\0';
+      char Response[30+1]; 
+      UserInput(Response);
       
-    
-      char* pAfter = ptr + 1;
-      if (strcmp(pBefore, Check_1) == 0) {a = 1;}
-      printf("a: %d\n", a);
-      printf("pBefore: %s\n", pBefore);
-      printf("pAfter: %s\n", pAfter);
+      char sub = '-';
+      int scan = 0;
+      int check = 0;
+      int a = 0;
+      int b = 0;
+      int c = 0;
+      int d = 0; //overflow
+
+      int sub_first = 0;
+      int sub_mid = 0;
+      int sub_thrid = 0;
+      int sub_overflow = 0;    //overflow
+
+      const char* out = strchr(Response, sub);
+
+      if (out != NULL) {
+        while(check < 3) {
+          
+          printf("Character '%c' found at position: %ld\n",sub, out - Response + 1);
+       
+          out = strchr(out+1, sub);
+          if (out == NULL) { break; }
+
+          if (sub_first == 0) {
+            sub_first = out - Response - 1;
+            printf("sub1: %i\n", sub_first);
+          } 
+          else if (sub_mid == 0) {
+            sub_mid = out - Response - 1;
+            printf("sub2 %i\n", sub_mid);
+          } 
+
+          if (a == 0) {
+          size_t sub_length = out - Response;
+          char sBefore[sub_length + 1];
+          strncpy(sBefore, Response, sub_length + 1);
+
+          sBefore[sub_length] = '\0';
+
+          
+          a = atoi(sBefore);
+          }
+          //-----
+
+          if (a != 0 && sub_first > 0) {
+          b = atoi(Response + sub_first);
+          }
+          scan = scan + 1;
+          check = check + 1;
+
+          //-----
+          if (a != 0 && b != 0 && sub_first > 0 && sub_mid > 0) {
+            c = atoi(Response + sub_mid);
+            }
+            scan = scan + 1;
+            check = check + 1;
+          
+        }
+      }
+       printf("OUT:\n %i\n %i\n %i\n %i\n", a, b, c, d);
+      return 0;
     }
-   }
     
-
-
-    
-  if (Input == 15) {
+  if (Input == 16) {
     char Response[500];
     int a;
     int b;
