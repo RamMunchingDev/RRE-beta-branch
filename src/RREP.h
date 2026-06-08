@@ -34,5 +34,49 @@ int c_add_2(int a, int b) {
   return add(a,b);
 }
 
+int scan_add() {
+    int a; 
+    int b; 
+    int OUT;
+    char OUT_text;
+    char Response[30+1];
+    int count;
+    
+    char *ptr;
+    UserInput(Response);
+
+   char Check_1[2] = "1";
+   char Check_2[2] = "2"; //add to git
+
+    ptr = strchr(Response, '+');
+    if (ptr == NULL) {
+      printf("NULL\n");
+      printf("Value of errno: %d\n", errno); 
+      perror("Message from perror");
+    }
+    if (ptr != NULL) {
+      //printf("NOT NULL\n");
+
+      
+      size_t plus_length = ptr - Response;
+      char pBefore[plus_length + 1];
+      strncpy(pBefore, Response, plus_length);
+
+      pBefore[plus_length] = '\0';
+
+
+      char* pAfter = ptr + 1;
+      if (strcmp(pBefore, Check_1) == 0) {a = 1;}
+      if (strcmp(pAfter, Check_2) == 0) {b = 2;} //add to git
+
+      return OUT = add(a,b);
+      
+      printf("a: %d\n b: %d\n", a, b); //update on git
+      printf("pBefore: %s\n", pBefore);
+      printf("pAfter: %s\n", pAfter);
+      printf("OUT: %d", OUT);
+      
+    } 
+}
   
 #endif
