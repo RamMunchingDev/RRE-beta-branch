@@ -1,6 +1,9 @@
 #ifndef RamMath_H
 #define RamMATH_H
 
+#include "RRE.h"
+#include "RREC.h"
+
 //Math Define
 #define add_2(a,b) ((a) + (b))
 #define add_3(a,b,c) ((a) + (b) + (c))
@@ -25,10 +28,17 @@
 //----
 
 #define MAX_CARROT 24
+#define MAX_LENGTH 1028+1
 
 //------
 //calc use
 //------
+
+float Decimal_Percent(float a) {
+  return a *100;
+  printf("%i", a);
+}
+
 int c_add_2(int a, int b) {
   int calc_OUT;
   printf("Var A:");
@@ -92,10 +102,11 @@ int scan_add_2() {
 //---
 int scan_sub() {
   char Response[30+1]; 
-  printf("Enter subtraction (enter 4 numbers, 0 for blank)\n");
+  printf("Enter subtraction (0 for blank)\n");
   UserInput(Response);
 
   char sub = '-';
+  char add = '+';
   int scan = 0;
   int check = 0;
   int a = 0;
@@ -110,21 +121,26 @@ int scan_sub() {
   int sub_forth = 0;
   int sub_overflow = 0;    //overflow
 
-  const char* out = strchr(Response, sub);
+  const char* out;
   int OUT;
 
+  bool IsSub = false;
+  bool IsAdd = false;
+
+  if (strchr(Response, sub) != NULL) {
+    out = strchr(Response, sub);
+    IsSub = true;
+  }
+  
   if (out != NULL) {
     while(check < 4) {
 
       //printf("Character '%c' found at position: %ld\n",sub, out - Response + 1);
-
-
-        
-      
       //===================================
       //math
       //===================================
-      out = strchr(out+1, sub);
+        out = strchr(out+1, sub);
+      
       if (out == NULL) { break; }
 
       if (sub_first == 0) {
@@ -174,6 +190,7 @@ int scan_sub() {
 
     }
   }
+  
    //printf("NUMS:\n %i\n %i\n %i\n %i\n", a, b, c, d);
   OUT = sub_4(a,b,c,d);
   printf("SUM: %i\n", OUT);
