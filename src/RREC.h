@@ -5,15 +5,14 @@ today is june 3rd -- math functs */
 #define RAMCORE_H
 
 #include "RRE.h"
-#include "RREP.h"
+#include "RRED.h"
 
 #include <stdint.h>
 #include <uchar.h>
+#include <ctype.h>
  
 #define π(x) ((x) * (3.14159265359))
 //math definitions under RREP place here 
-
-
 
         
 //-----------------------------------------------------------------------------------
@@ -62,6 +61,44 @@ int HourTick(int Minute, int Hour) {
 //===================================================================================
 //TERMINAL
 //===================================================================================
+
+//-------------
+//color 
+//-------------
+
+void PRINT_RED(char *Text) {
+    printf(COLOR_RED "%s" COLOR_RESET "\n", Text);
+}
+void PRINT_RED_BOLD(char *Text) {
+    printf(COLOR_RED_BOLD "%s" COLOR_RESET "\n", Text);
+}
+
+//--
+
+void PRINT_GREEN(char *Text) {
+    printf(COLOR_GREEN "%s" COLOR_RESET "\n", Text);
+}
+void PRINT_GREEN_BOLD(char *Text) {
+    printf(COLOR_GREEN_BOLD "%s" COLOR_RESET "\n", Text);
+}
+
+//--
+
+void PRINT_BLUE(char *Text) {
+    printf(COLOR_BLUE "%s" COLOR_RESET "\n", Text);
+}
+void PRINT_BLUE_BOLD(char *Text) {
+    printf(COLOR_BLUE_BOLD "%s" COLOR_RESET "\n", Text);
+}
+
+//--
+
+void PRINT_COLOR(char *Text, char *Color) {
+    printf("%s%s\n", Color, Text, COLOR_RESET "\n");
+}
+
+
+//-------
 void TermClear() {                              //(clears the terminal example > TermClear();
     system("clear");
 }
@@ -132,7 +169,7 @@ void FileCreate(char FileName[]) {
     scanf("%s", FileName);
     fptr = fopen(FileName, "w");
     if (fptr == NULL) {
-      printf("Error: %s\n", strerror(errno));
+      printf(COLOR_RED "Error:" COLOR_RESET "%s", strerror(errno));
     }
     fclose(fptr);
     printf("File Made!\n");
@@ -141,6 +178,59 @@ void FileCreate(char FileName[]) {
 void FileDelete(char Path[]) {
     PathToFile(Path);
     remove(Path);
+}
+
+void FileScan(char Path[]) {
+    TermClear();
+    bool Debug = false;
+    int i;
+    int count = 0;
+    
+    char Text[MAX_LENGTH];
+    FILE *fptr;
+    char *ptr;
+    char Find;
+    
+    printf(COLOR_RED "\n========================" COLOR_RESET "\n");
+    printf(COLOR_RED "search for (ctrl-f) in file" COLOR_RESET "\n");
+    printf(COLOR_RED "========================" COLOR_RESET "\n");
+    PathToFile(Path);
+    printf("Find: ");
+    scanf(" %99[^\n]", &Find);
+    
+    if (Find == NULL && Debug == true) {
+        printf("Value of errno: %d\n", errno); 
+    }
+    
+    fptr = fopen(Path, "r");
+    printf("file: %s\n", Path);  
+    while(fgets(Text, MAX_LENGTH, fptr))
+      {    
+        
+        printf("%99s", Text);
+          ptr = strchr(Text, Find);
+          if (ptr != NULL) {
+              printf("\n========================\n");
+              while (i <= 10, i++) {
+              count = count + 1;
+              ptr = strchr(ptr+1, Find);
+                  if (ptr == NULL) {break;}
+              }
+        
+          }
+          if (ptr == NULL) {
+              if (Debug == true) {
+              printf("end\n");
+              }
+              printf("Found times: %ld\n", count);
+              fclose(fptr);
+          }
+      }
+        printf("\n");
+    
+    if (fptr == NULL) {
+      printf(COLOR_RED "Error:" COLOR_RESET "%s", strerror(errno));
+    }
 }
 
 //===================================================================================
@@ -183,6 +273,17 @@ float RectBaseArea(float length, float width) {
     return length * width;
 }
 
+//===================================================================================
+//Math extras
+//===================================================================================
+
+
+
+
+//===================================================================================
+//WIP MATH
+//===================================================================================
+//THE PHYSICS ARE WIP
 //go easy on me with the physics im still learning 
 
 //∆speed & ∆time
@@ -191,23 +292,16 @@ float AVG_velocity(float s, float t) {
 }
 
 //∆velocity & ∆time 
-float AVG_acceleration(float v, float t);
+float acceleration(float v, float t) {
+    return v / t;
+}
+
+//float AVG_acceleration();
+
 //alt acceleration
 float ALT_acceleration(float speed, float Max_speed) {
     if (speed < Max_speed) {
      return speed = speed + 1;
-    }
-}
-
-void Calc(char Response[]) {
-    char a_add[26];
-    int a;
-    int b;
-    int OUT;
-
-    if (strcmp(Response, "add_2") == 0) {
-        OUT = c_add_2(a, b);
-        printf("OUT: %i\n", OUT);
     }
 }
 
