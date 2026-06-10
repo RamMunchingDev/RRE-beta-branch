@@ -8,9 +8,9 @@
 
 //that's all.  
 
-//May 20th 2026, as of this file update
-//added core--math and a bit of more will split into multiple H files for cleaner look eventually 
-
+//6/10/26, as of this file update
+//added core--define and a bit of more will split into multiple H files for cleaner look eventually 
+//this will be the last update for a while over summar
 
 //hot fixed the file issue 
 
@@ -20,6 +20,7 @@
 #include <string.h>
 #include <math.h> 
 #include "RREC.h"       //function defintion 
+#include "RRED.h"
 
 #ifndef RAMENG_H
 #define RAMENG_H
@@ -244,11 +245,44 @@ bool IsObjectHit;       //is object hit
 bool IsRendered;              //is object rendered 
 } ObjectStat;
 
-//------------------------------------------------------------------------------------------------------
-//TEMP NAME
-//------------------------------------------------------------------------------------------------------
+//==================================================
+//COLOR (TERMINAL)
+//==================================================
+void PRINT_RED(char *Text);                            //prints text in red
+void PRINT_BLUE(char *Text);                           //prints text in blue
+void PRINT_GREEN(char *Text);                          //prints text in green
+void PRINT_COLOR(char *Text, char *Color);             //prints text in the color of the given value
 
-//add things here
+/* list of colors and their *Color 
+
+COLOR_RED     "\x1b[31m"  the string is used for *Color
+COLOR_RED_BOLD     "\x1b[1;31m"
+COLOR_RED_UNDERLINE     "\x1b[4;31m"
+
+COLOR_GREEN   "\x1b[32m"
+COLOR_GREEN_BOLD   "\x1b[1;32m"
+COLOR_GREEN_UNDERLINE   "\x1b[4;32m"
+
+COLOR_YELLOW  "\x1b[33m"
+COLOR_YELLOW_BOLD "\x1b[1;33m"
+COLOR_YELLOW_UNDERLINE "\x1b[4;33m"
+
+COLOR_BLUE    "\x1b[34m"
+COLOR_BLUE_BOLD    "\x1b[1;34m"
+COLOR_BLUE_UNDERLINE    "\x1b[4;34m"
+
+COLOR_MAGENTA "\x1b[35m"
+COLOR_MAGENTA_BOLD "\x1b[1;35m"
+COLOR_MAGENTA_UNDERLINE "\x1b[4;35m"
+
+COLOR_CYAN    "\x1b[36m"
+COLOR_CYAN_BOLD    "\x1b[1;36m"
+COLOR_CYAN_UNDERLINE    "\x1b[4;36m"
+
+COLOR_RESET   "\x1b[0m"
+
+*/
+
 
 //==================================================
 //TERMINAL
@@ -266,6 +300,7 @@ char WriteToFile(char SaveText[]);              //text to save to file
 void FileCreate(char FileName[]);               //create a file
 void ReadTextFile(char Path[]);                 //read a text file 
 void FileDelete(char Path[]);                   //removes a file
+void FileScan(char Path[]);
 
 
 //==================================================
@@ -281,6 +316,10 @@ float squared(float a);
 float cubed(float a);
 float RectBaseArea(float length, float width);
 //wip thing
+
+//WIP
+//int scan_add_2();
+//int scan_sub();
 
 //===================================================================================
 //others (unsorted for now)
